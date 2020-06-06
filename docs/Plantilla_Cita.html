@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="Styles.css">
+  <title>Registro De Cita</title>
+  <script src = jquery-3.2.1.min.js></script>
+</head>
+<body>
+  <form id = "frmajax" METHOD = "POST">
+    <label>Fecha De Cita</label>
+    <p></p>
+    <input type="date" name="fecha" id="fecha">
+    <p></p>
+    <label>Hora De Cita</label>
+    <p></p>
+    <input type="time" name="hora" id="hora">
+    <p></p>
+    <button id = "btnguardar"> Guardar datos</button>
+  </form>
+</body>
+</html>
+
+<script type = "text/javascript">
+$(document).ready(function(){
+  $('#btnguardar').click(function(){
+    var datos =$('#frmajax').serialize();
+
+    alert(datos);
+    return false;
+
+    $.ajax({
+      type:"POST",
+      url:"insertar.php",
+      data:datos,
+      success:function(r){
+        if(r==1){
+          alert("agregado con exito");
+        }else{
+          alert("Fallo el server");
+        }
+      }
+    });
+
+    return false;
+
+  });
+});
+</script>

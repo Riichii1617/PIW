@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  <meta charset="utf-8" />
+  <title>Registro De Cita</title>
+  <script src = jquery-3.2.1.min.js></script>
+  <h1>Gestion De Citas</h1>
+</head>
+<body>
+
+  <table>
+    <tr>
+      <td colspan="4">Citas</td>
+    </tr>
+
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Estado</th>
+    </tr>
+
+
+    <tr>
+      <td>Alfredo Perez</td>
+      <td>25/11/2019</td>
+      <td>22:00</td>
+      <td><button id = "btnaceptar"> Aceptar Cita</button></td>
+
+    </tr>
+
+    <tr>
+      <td>Marta Salamanca</td>
+      <td>29/11/2019</td>
+      <td>22:00</td>
+      <td><button id = "btnaceptar"> Aceptar Cita</button></td>
+
+    </tr>
+
+    <tr>
+      <td>Juan Perez</td>
+      <td>30/11/2019</td>
+      <td>12:00</td>
+      <td><button id = "btnaceptar"> Aceptar Cita</button></td>
+
+    </tr>
+
+  </table>
+
+
+  <br><br>
+
+
+  <table>
+    <tr>
+      <td colspan="5">Citas</td>
+    </tr>
+
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Estado</th>
+      <th>Accion</th>
+    </tr>
+
+
+    <tr>
+      <td>Alfredo Perez</td>
+      <td>25/11/2019</td>
+      <td>22:00</td>
+      <td>Aceptada</td>
+      <td><button id = "btnposponer"> Posponer Cita</button> <button id = "btncancelar"> Cancelar Cita</button></td>
+
+    </tr>
+
+    <tr>
+      <td>Marta Salamanca</td>
+      <td>29/11/2019</td>
+      <td>22:00</td>
+      <td>Aceptada</td>
+      <td><button id = "btnposponer"> Posponer Cita</button> <button id = "btncancelar"> Cancelar Cita</button></td>
+
+    </tr>
+
+    <tr>
+      <td>Juan Perez</td>
+      <td>30/11/2019</td>
+      <td>12:00</td>
+      <td>Aceptada</td>
+      <td><button id = "btnposponer"> Posponer Cita</button> <button id = "btncancelar"> Cancelar Cita</button></td>
+
+    </tr>
+
+  </table>
+
+
+</body>
+</html>
+
+<script type = "text/javascript">
+$(document).ready(function(){
+  $('#btnguardar').click(function(){
+    var datos =$('#frmajax').serialize();
+
+    alert(datos);
+    return false;
+
+    $.ajax({
+      type:"POST",
+      url:"insertar.php",
+      data:datos,
+      success:function(r){
+        if(r==1){
+          alert("agregado con exito");
+        }else{
+          alert("Fallo el server");
+        }
+      }
+    });
+
+    return false;
+
+  });
+});
+</script>

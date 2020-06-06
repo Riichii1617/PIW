@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head> 
+		<title> Cita </title>
+		<script src = jquery-3.2.1.min.js></script>
+</head> 
+<body>
+<form id = "frmajax" METHOD = "POST">
+	<label>NOMBRE:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "NOMBRE"> <br>
+	<p></p>
+	<label>APELLIDO:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "APELLIDO"> <br>
+	<p></p>
+	<label>DIRECCION:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "DIRECCION"> <br>
+	<p></p>
+	<label>TELEFONO:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "TELEFONO"> <br>
+	<p></p>
+	<label>EMAIL:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "EMAIL"> <br>
+	<p></p>
+	<label>CONTRASEÑA:</label>
+	<p></p>
+	<INPUT TYPE = "text" NAME = "CONTRASEÑA"> <br>
+	<p></p>
+	<button id = "btnguardar"> Guardar datos</button>
+
+</form>
+</body>
+</html>
+
+<script type = "text/javascript">
+		$(document).ready(function(){
+			$('#btnguardar').click(function(){
+				var datos =$('#frmajax').serialize();
+				$.ajax({
+					type:"POST",
+					url:"insertar.php",
+					data:datos,
+					success:function(r){
+						if(r==1){
+							alert("agregado con exito");
+						}else{
+							alert("Fallo el server");
+						}
+					}
+				});
+				
+				return false;
+				
+			});
+		});
+</script>

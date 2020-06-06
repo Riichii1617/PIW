@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  <meta charset="utf-8" />
+  <title>Registro De Cita</title>
+  <script src = jquery-3.2.1.min.js></script>
+  <h1>Posponer Cita</h1>
+</head>
+<body>
+<label>Cita anterior</label>
+<br><br>
+  <table>
+    <tr>
+      <td colspan="3">Dentista : Maria Diaz Tome</td>
+    </tr>
+
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+    </tr>
+
+
+    <tr>
+      <td>Alfredo Perez</td>
+      <td>25/11/2019</td>
+      <td>22:00</td>
+
+    </tr>
+
+  </table>
+
+<br><br><br><br>
+
+  <h2>Ingresa los datos de tu nueva fecha</h2>
+  <form id = "frmajax" METHOD = "POST">
+    <label>Fecha De Cita</label>
+    <p></p>
+    <input type="date" name="fecha" id="fecha">
+    <p></p>
+    <label>Hora De Cita</label>
+    <p></p>
+    <input type="time" name="hora" id="hora">
+    <p></p>
+    <button id = "btnguardar"> Guardar datos</button>
+  </form>
+  <br><br>
+
+  <label>Nueva Cita</label>
+  <table>
+    <tr>
+      <td colspan="3">Dentista : Maria Diaz Tome</td>
+    </tr>
+
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+    </tr>
+
+
+    <tr>
+      <td>Alfredo Perez</td>
+      <td>26/11/2019</td>
+      <td>12:00</td>
+
+    </tr>
+
+  </table>
+
+</body>
+</html>
+
+<script type = "text/javascript">
+$(document).ready(function(){
+  $('#btnguardar').click(function(){
+    var datos =$('#frmajax').serialize();
+
+    alert(datos);
+    return false;
+
+    $.ajax({
+      type:"POST",
+      url:"insertar.php",
+      data:datos,
+      success:function(r){
+        if(r==1){
+          alert("agregado con exito");
+        }else{
+          alert("Fallo el server");
+        }
+      }
+    });
+
+    return false;
+
+  });
+});
+</script>
